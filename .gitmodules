@@ -1,3 +1,6 @@
 [submodule "assignment-autotest"]
 	path = assignment-autotest
 	url = https://github.com/cu-ecen-aeld/assignment-autotest.git
+[submodule "UColorado_Assignment_3_andlater"]
+	path = UColorado_Assignment_3_andlater
+	url = git@github.com:kygm02/UColorado_Assignment_3_andlater.git
