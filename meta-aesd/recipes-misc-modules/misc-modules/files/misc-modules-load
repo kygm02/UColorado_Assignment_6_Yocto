@@ -1,0 +1,32 @@
+#!/bin/sh
+
+FAULTY_MODULE=/lib/modules/$(uname -r)/updates/faulty.ko
+HELLO_MODULE=hello
+
+case "$1" in
+    start)
+        echo "Loading LDD modules"
+
+        # load faulty
+        if [ -f ${FAULTY_MODULE} ]; then
+            insmod ${FAULTY_MODULE}
+            echo "faulty loaded"
+        fi
+
+        # load hello
+        modprobe ${HELLO_MODULE} && echo "hello loaded"
+        ;;
+
+    stop)
+        echo "Unloading LDD modules"
+        rmmod hello  2>/dev/null && echo "hello unloaded"
+        rmmod faulty 2>/dev/null && echo "faulty unloaded"
+        ;;
+
+    *)
+        echo "Usage: $0 {start|stop}"
+        exit 1
+        ;;
+esac
+
+exit 0
